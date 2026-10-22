@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/">
+          DataTech
+          <small>Consulting and Contracting</small>
+        </a>
+        <nav class="main-nav" aria-label="Main">
+          <a href="/">Home</a>
+          <a href="/offers/">Offers</a>
+          <a href="/proof/">Proof</a>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="cols">
+          <div>
+            <p><strong>DataTech Consulting and Contracting</strong></p>
+            <p>Fixed-scope AI systems for local service businesses.</p>
+            <p>
+              Email: <a href="mailto:charlie@datatech.vip">charlie@datatech.vip</a><br />
+              Phone: <a href="tel:+16147259599">+1 (614) 725-9599</a>
+            </p>
+          </div>
+          <nav aria-label="Footer">
+            <a href="/">Home</a>
+            <a href="/offers/">Offers</a>
+            <a href="/proof/">Proof</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

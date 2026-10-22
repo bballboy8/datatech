@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Contact - DataTech Consulting and Contracting"
+  description="Contact DataTech Consulting and Contracting in Columbus, Ohio. Email charlie@datatech.vip or call +1 (614) 725-9599 to book a 20-minute fit call for a fixed-scope AI build."
+>
+  <div class="wrap">
+    <h1 class="page-title">Contact DataTech</h1>
+    <p class="lede">
+      The fastest way to start is a 20-minute fit call. Tell us where work is
+      being missed and we will tell you plainly whether a fixed-scope build
+      fits, and what it would cost.
+    </p>
+
+    <section>
+      <h2>Direct</h2>
+      <p>
+        Email: <a href="mailto:charlie@datatech.vip">charlie@datatech.vip</a><br />
+        Phone: <a href="tel:+16147259599">+1 (614) 725-9599</a>
+      </p>
+      <p>
+        We reply to enquiries on business days. If you send the form below,
+        expect a reply from charlie@datatech.vip within one business day.
+        If your need is urgent, call.
+      </p>
+    </section>
+
+    <section>
+      <h2>Send an enquiry</h2>
+      <p>
+        This form opens your email app with the message addressed to us, so
+        nothing is stored on this website. Fill it in, press the button, then
+        send the email that opens.
+      </p>
+
+      <form class="enquiry" id="enquiry-form" action="mailto:charlie@datatech.vip" method="post" enctype="text/plain">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+
+        <label for="company">Company</label>
+        <input id="company" name="company" type="text" autocomplete="organization" required />
+
+        <label for="email">Your email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+
+        <label for="phone">Your phone (optional)</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" />
+
+        <label for="offer">What are you interested in?</label>
+        <select id="offer" name="offer">
+          <option>AI Support Assistant - $5,000 + $500/mo</option>
+          <option>Lead Intake - $5,000 + $500/mo</option>
+          <option>Call Intelligence - $4,000 + $400/mo</option>
+          <option>Internal Knowledge Assistant - $7,500 + $750/mo</option>
+          <option>Document Extraction - $8,000 + $750/mo</option>
+          <option>Custom work</option>
+          <option>Not sure yet</option>
+        </select>
+
+        <label for="message">Where is work being missed?</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+
+        <button class="btn" type="submit">Compose email to DataTech</button>
+      </form>
+
+      <p class="note" style="margin-top:24px;">
+        The button does not send anything by itself. It composes an email to
+        charlie@datatech.vip in your own email app, with your answers in it.
+        You review it and press send there. If the button does not open your
+        email app, write to us directly at charlie@datatech.vip.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById('enquiry-form');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const subject = 'DataTech enquiry - ' + (data.get('company') || 'new enquiry');
+      const lines = [
+        'Name: ' + data.get('name'),
+        'Company: ' + data.get('company'),
+        'Email: ' + data.get('email'),
+        'Phone: ' + (data.get('phone') || 'not given'),
+        'Interested in: ' + data.get('offer'),
+        '',
+        'Where work is being missed:',
+        data.get('message'),
+      ];
+      const href =
+        'mailto:charlie@datatech.vip?subject=' +
+        encodeURIComponent(subject) +
+        '&body=' +
+        encodeURIComponent(lines.join('\n'));
+      window.location.href = href;
+    });
+  </script>
+</Base>
